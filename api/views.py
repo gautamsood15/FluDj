@@ -2,9 +2,11 @@
 
 # Create your views here.
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
-from django.http import JsonResponse
 
+@api_view(['GET', 'POST', ])
 def getRoutes(request):
     routes = [
         {
@@ -29,7 +31,7 @@ def getRoutes(request):
             'Endpoint': '/notes/id/update/',
             'method': 'PUT',
             'body': {'body': ""},
-            'description': 'Creates an existing note with data sent in request'
+            'description': 'Creates an existing note with data sent in post request'
         },
         {
             'Endpoint': '/notes/id/delete',
@@ -38,4 +40,4 @@ def getRoutes(request):
             'description': 'Deletes and existing note'
         },
     ]
-    return JsonResponse(routes, safe=False)
+    return Response(routes)
